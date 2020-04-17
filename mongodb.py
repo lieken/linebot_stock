@@ -6,9 +6,7 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 
-###############################################################################
-#                       股票機器人 Python基礎教學 【pymongo教學】                      #
-###############################################################################
+
 
 # Authentication Database認證資料庫
 Authdb='linebot_stock'
