@@ -11,16 +11,14 @@ from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import *
 import mongodb
+import Stock_Strategy2
 import re
 
 app = Flask(__name__)
 
-# 必須放上自己的Channel Access Token
 line_bot_api = LineBotApi('/u+KR9NmRg9UVRk8NWvx578eKypyJUOaXrSltxJaKtY7hHTIM/UY5Nj9jm1vNNbsODDCxVM6HPftyh9oyTL/oFBuBtBI5cS3j/lWsfaWBu1Ea7OclWBxJnWWk10XyMogmtsyYvX60c9RFwSyRlLCwwdB04t89/1O/w1cDnyilFU=')
-# 必須放上自己的Channel Secret
 handler = WebhookHandler('3a3ec40cb756d1640f70aa711372e431')
-
-line_bot_api.push_message('U1d4e838208d0f278714d687538a07600', TextSendMessage(text='你可以開始了'))
+line_bot_api.push_message('U1d4e838208d0f278714d687538a07600', TextSendMessage(text='-股票小助手已開始運作-'))
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
@@ -46,9 +44,11 @@ def handle_message(event):
     profile = line_bot_api.get_profile(event.source.user_id)
     uid = profile.user_id #使用者ID
     usespeak=str(event.message.text) #使用者講的話
+    
+    
     if re.match('[0-9]{4}[<>][0-9]',usespeak): # 先判斷是否是使用者要用來存股票的
         mongodb.write_user_stock_fountion(stock=usespeak[0:4], bs=usespeak[4:5], price=usespeak[5:])
-        line_bot_api.push_message(uid, TextSendMessage(usespeak[0:4]+'已經儲存成功'))
+        line_bot_api.push_message(uid, TextSendMessage(usespeak[0:4]+Stock_Strategy2.Name_Stock(usespeak[0:4])+'已經儲存成功'))
         return 0
 
     

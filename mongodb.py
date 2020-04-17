@@ -2,6 +2,10 @@
 from pymongo import MongoClient
 import urllib.parse
 import datetime
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+
 ###############################################################################
 #                       股票機器人 Python基礎教學 【pymongo教學】                      #
 ###############################################################################
@@ -41,4 +45,11 @@ def show_user_stock_fountion():
     return cel
 
 
-
+#----------------------------股票處理--------------------------------
+def Name_Stock(stock):
+    url = 'https://tw.stock.yahoo.com/q/q?s=' + str(stock) 
+    list_req = requests.get(url)
+    soup = BeautifulSoup(list_req.content, "html.parser")
+    StockN='/q/bc?s='+str(stock) 
+    StockName = soup.find('a', {'href':StockN}).text
+    return StockName
