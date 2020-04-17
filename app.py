@@ -11,7 +11,6 @@ from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import *
 import mongodb
-import Stock_Strategy2
 import re
 
 app = Flask(__name__)
@@ -48,7 +47,7 @@ def handle_message(event):
     
     if re.match('[0-9]{4}[<>][0-9]',usespeak): # 先判斷是否是使用者要用來存股票的
         mongodb.write_user_stock_fountion(stock=usespeak[0:4], bs=usespeak[4:5], price=usespeak[5:])
-        line_bot_api.push_message(uid, TextSendMessage(usespeak[0:4]+Stock_Strategy2.Name_Stock(stock)+'已經儲存成功'))
+        line_bot_api.push_message(uid, TextSendMessage(usespeak[0:4]+mongodb.Name_Stock(stock)+'已經儲存成功'))
         return 0
 
     
