@@ -35,6 +35,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     ### 抓到顧客的資料 ###
+    data = '0'
     profile = line_bot_api.get_profile(event.source.user_id)
     uid = profile.user_id #使用者ID
     usespeak=str(event.message.text) #使用者講的話
@@ -67,7 +68,7 @@ def handle_message(event):
                                 PostbackTemplateAction(
                                     label='postback還會回傳data參數', 
                                     text='postback text',
-                                    data='action=buy&itemid=1'
+                                    data='123'
                                 ),
                                 MessageTemplateAction(
                                     label='message會回傳text文字', text='message text'
@@ -78,7 +79,12 @@ def handle_message(event):
                             ]
                         )
         line_bot_api.push_message(uid, TemplateSendMessage(alt_text="Template Example", template=button_template_message))
+        return 0
 
+    elif data == '123':
+        line_bot_api.push_message(uid, TextSendMessage(usespeak+'已被觸發'))
+        data = '0'
+        return 0
 
 if __name__ == '__main__':
     app.run(debug=True)
