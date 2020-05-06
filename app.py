@@ -13,7 +13,7 @@ app = Flask(__name__)
 line_bot_api = LineBotApi('/u+KR9NmRg9UVRk8NWvx578eKypyJUOaXrSltxJaKtY7hHTIM/UY5Nj9jm1vNNbsODDCxVM6HPftyh9oyTL/oFBuBtBI5cS3j/lWsfaWBu1Ea7OclWBxJnWWk10XyMogmtsyYvX60c9RFwSyRlLCwwdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('3a3ec40cb756d1640f70aa711372e431')
 line_bot_api.push_message('U1d4e838208d0f278714d687538a07600', TextSendMessage(text='-股票小助手已開始運作-'))
-
+data = '0'
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -35,7 +35,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     ### 抓到顧客的資料 ###
-    data = '0'
+    global data
     profile = line_bot_api.get_profile(event.source.user_id)
     uid = profile.user_id #使用者ID
     usespeak=str(event.message.text) #使用者講的話
@@ -55,11 +55,9 @@ def handle_message(event):
     
     elif re.match('[0-9]{4}',usespeak):
         button_template_message =ButtonsTemplate(
-                            thumbnail_image_url="https://i.imgur.com/eTldj2E.png?1",
                             title='Menu', 
                             text='Please select',
                             ratio="1.51:1",
-                            image_size="cover",
                             actions=[
 #                                PostbackTemplateAction 點擊選項後，
 #                                 除了文字會顯示在聊天室中，
@@ -68,7 +66,7 @@ def handle_message(event):
                                 PostbackTemplateAction(
                                     label='postback還會回傳data參數', 
                                     text='123',
-                                    data='123'
+                                    data='怎麼會這樣'
                                 ),
                                 MessageTemplateAction(
                                     label='message會回傳text文字', text='message text'
@@ -82,7 +80,7 @@ def handle_message(event):
         return 0
 
     elif usespeak == '123':
-        line_bot_api.push_message(uid, TextSendMessage(usespeak+'已被觸發,Data為: ')+data)
+        line_bot_api.push_message(uid, TextSendMessage(usespeak+'已被觸發,Data為: '+data))
         data = '0'
         return 0
 
