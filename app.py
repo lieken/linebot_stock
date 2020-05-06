@@ -3,7 +3,7 @@ from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import *
 from linebot.models import TemplateSendMessage, ButtonsTemplate, PostbackTemplateAction, MessageTemplateAction, URITemplateAction,PostbackEvent
-from urllib.parse import parse_qsl
+
 
 import mongodb
 
@@ -14,7 +14,7 @@ app = Flask(__name__)
 line_bot_api = LineBotApi('/u+KR9NmRg9UVRk8NWvx578eKypyJUOaXrSltxJaKtY7hHTIM/UY5Nj9jm1vNNbsODDCxVM6HPftyh9oyTL/oFBuBtBI5cS3j/lWsfaWBu1Ea7OclWBxJnWWk10XyMogmtsyYvX60c9RFwSyRlLCwwdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('3a3ec40cb756d1640f70aa711372e431')
 line_bot_api.push_message('U1d4e838208d0f278714d687538a07600', TextSendMessage(text='-股票小助手已開始運作-'))
-data = '0'
+
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -36,7 +36,6 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     ### 抓到顧客的資料 ###
-    global data
     profile = line_bot_api.get_profile(event.source.user_id)
     uid = profile.user_id #使用者ID
     usespeak=str(event.message.text) #使用者講的話
@@ -76,8 +75,7 @@ def handle_message(event):
         return 0
 
     elif usespeak == '123':
-        data = event.postback.data
-        line_bot_api.push_message(uid, TextSendMessage('編號: '+ usespeak+'已被觸發\nData為: '+data))
+        line_bot_api.push_message(uid, TextSendMessage('測試編號: '+ usespeak+'已被觸發'))
         return 0
     
 
@@ -88,7 +86,7 @@ def handle_postback(event):
     data = event.postback.data
 
     if data == "buy":
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='感謝您喜歡我們的服務!!'))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Buy 代碼測試成功'))
 
     
 if __name__ == '__main__':
