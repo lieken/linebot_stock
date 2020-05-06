@@ -57,12 +57,7 @@ def handle_message(event):
         button_template_message =ButtonsTemplate(
                             title='Menu', 
                             text='Please select',
-                            ratio="1.51:1",
                             actions=[
-#                                PostbackTemplateAction 點擊選項後，
-#                                 除了文字會顯示在聊天室中，
-#                                 還回傳data中的資料，可
-#                                 此類透過 Postback event 處理。
                                 PostbackTemplateAction(
                                     label='Postback: 測試data和文字', 
                                     data='怎麼會這樣',
