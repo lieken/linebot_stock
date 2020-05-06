@@ -60,8 +60,8 @@ def handle_message(event):
                             actions=[
                                 PostbackTemplateAction(
                                     label='Postback: 測試data和文字', 
+                                    text='123',
                                     data='怎麼會這樣',
-                                    text='123'
                                 ),
                                 MessageTemplateAction(
                                     label='Message: 測試文字', text='message text'
