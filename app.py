@@ -65,8 +65,8 @@ def handle_message(event):
 #                                 此類透過 Postback event 處理。
                                 PostbackTemplateAction(
                                     label='postback還會回傳data參數', 
-                                    text='123',
-                                    data='怎麼會這樣'
+                                    data='怎麼會這樣',
+                                    text='123'
                                 ),
                                 MessageTemplateAction(
                                     label='message會回傳text文字', text='message text'
@@ -80,7 +80,7 @@ def handle_message(event):
         return 0
 
     elif usespeak == '123':
-        line_bot_api.push_message(uid, TextSendMessage(usespeak+'已被觸發,Data為: '+data))
+        line_bot_api.push_message(uid, TextSendMessage('編號: 'usespeak+'已被觸發\nData為: '+data))
         data = '0'
         return 0
 
