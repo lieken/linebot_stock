@@ -64,15 +64,15 @@ def handle_message(event):
 #                                 還回傳data中的資料，可
 #                                 此類透過 Postback event 處理。
                                 PostbackTemplateAction(
-                                    label='postback還會回傳data參數', 
+                                    label='Postback: 測試data和文字', 
                                     data='怎麼會這樣',
                                     text='123'
                                 ),
                                 MessageTemplateAction(
-                                    label='message會回傳text文字', text='message text'
+                                    label='Message: 測試文字', text='message text'
                                 ),
                                 URITemplateAction(
-                                    label='uri可回傳網址', uri='http://www.xiaosean.website/'
+                                    label='Uri: 可回傳網址', uri='http://www.google.com'
                                 )
                             ]
                         )
