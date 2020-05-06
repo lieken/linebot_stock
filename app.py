@@ -82,7 +82,7 @@ def handle_message(event):
         return 0
 
     elif usespeak == '123':
-        line_bot_api.push_message(uid, TextSendMessage(usespeak+'已被觸發'))
+        line_bot_api.push_message(uid, TextSendMessage(usespeak+'已被觸發,Data為: ')+data)
         data = '0'
         return 0
 
