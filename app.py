@@ -80,6 +80,7 @@ def handle_message(event):
     
 @handler.add(PostbackEvent)
 def handle_postback(event):
+    uid = profile.user_id
     if event.postback.data == '123':
             line_bot_api.push_message(uid, TextSendMessage('Data為: '+data))
 
