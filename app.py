@@ -53,7 +53,6 @@ def handle_message(event):
         return 0
     
     elif re.match('#[0-9]{4}',usespeak):
-        line_bot_api.push_message(to, TemplateSendMessage(alt_text="Template Example", template=button_template_message))
         button_template_message =ButtonsTemplate(
                             thumbnail_image_url="https://i.imgur.com/eTldj2E.png?1",
                             title='Menu', 
@@ -78,7 +77,7 @@ def handle_message(event):
                                 )
                             ]
                         )
-        line_bot_api.push_message(to, TemplateSendMessage(alt_text="Template Example", template=button_template_message))
+        line_bot_api.push_message(uid, TemplateSendMessage(alt_text="Template Example", template=button_template_message))
 
 
 if __name__ == '__main__':
