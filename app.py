@@ -53,32 +53,34 @@ def handle_message(event):
         return 0
     
     elif event.message.text == "apple":
-        buttons_template = TemplateSendMessage(
-        alt_text='Buttons Template',
-        template=ButtonsTemplate(
-            title='這是ButtonsTemplate',
-            text='ButtonsTemplate可以傳送text,uri',
-            thumbnail_image_url='顯示在開頭的大圖片網址',
-            actions=[
-                MessageTemplateAction(
-                    label='ButtonsTemplate',
-                    text='ButtonsTemplate'
-                ),
-                URITemplateAction(
-                    label='VIDEO1',
-                    uri='影片網址'
-                ),
-                PostbackTemplateAction(
-                    label='postback',
-                    text='postback text',
-                    data='postback1'
-                )
-            ]
-        )
-    )
-    line_bot_api.push_message(uid, buttons_template)
+        button_template_message =ButtonsTemplate(
+                            thumbnail_image_url="https://i.imgur.com/eTldj2E.png?1",
+                            title='Menu', 
+                            text='Please select',
+                            ratio="1.51:1",
+                            image_size="cover",
+                            actions=[
+#                                PostbackTemplateAction 點擊選項後，
+#                                 除了文字會顯示在聊天室中，
+#                                 還回傳data中的資料，可
+#                                 此類透過 Postback event 處理。
+                                PostbackTemplateAction(
+                                    label='postback還會回傳data參數', 
+                                    text='postback text',
+                                    data='action=buy&itemid=1'
+                                ),
+                                MessageTemplateAction(
+                                    label='message會回傳text文字', text='message text'
+                                ),
+                                URITemplateAction(
+                                    label='uri可回傳網址', uri='http://www.xiaosean.website/'
+                                )
+                            ]
+                        )
+    line_bot_api.push_message(to, TemplateSendMessage(alt_text="Template Example", template=button_template_message))
 
 
+    
 
 if __name__ == '__main__':
     app.run(debug=True)
