@@ -61,7 +61,7 @@ def handle_message(event):
                             actions=[
                                 PostbackTemplateAction(
                                     label='Postback: 測試data和文字', 
-                                    data='action=buy',
+                                    data='buy',
                                     text='123'
                                 ),
                                 MessageTemplateAction(
@@ -80,12 +80,14 @@ def handle_message(event):
         return 0
     
 
-    backdata = dict(parse_qsl(event.postback.data))
-    if backdata.get('action')=='buy':
-        line_bot_api.push_message(uid, TextSendMessage('編號: '+ usespeak+'已被觸發'))
-    
+# 處理按下按鈕後的postback
+@handler.add(PostbackEvent)
+def handle_postback(event):
+    # 注意!! 這裡的event.message是取不到text的
+    data = event.postback.data
 
-
+    if data == "buy":
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='感謝您喜歡我們的服務!!'))
 
     
 if __name__ == '__main__':
