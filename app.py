@@ -3,6 +3,7 @@ from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import *
 from linebot.models import TemplateSendMessage, ButtonsTemplate, PostbackTemplateAction, MessageTemplateAction, URITemplateAction,PostbackEvent
+from urllib.parse import parse_qsl
 
 import mongodb
 
@@ -60,7 +61,7 @@ def handle_message(event):
                             actions=[
                                 PostbackTemplateAction(
                                     label='Postback: 測試data和文字', 
-                                    data='123',
+                                    data='action=buy',
                                     text='123'
                                 ),
                                 MessageTemplateAction(
@@ -78,11 +79,12 @@ def handle_message(event):
         line_bot_api.push_message(uid, TextSendMessage('編號: '+ usespeak+'已被觸發\nData為: '+data))
         return 0
     
-@handler.add(PostbackEvent)
-def handle_postback(event):
-    uid = profile.user_id
-    if event.postback.data == '123':
-            line_bot_api.push_message(uid, TextSendMessage('Data為: '+data))
+
+    backdata = dict(parse_qsl(event.postback.data))
+    if backdata.get('action')=='buy':
+        line_bot_api.push_message(uid, TextSendMessage('編號: '+ usespeak+'已被觸發'))
+    
+
 
 
     
