@@ -60,7 +60,7 @@ def handle_message(event):
                             actions=[
                                 PostbackTemplateAction(
                                     label='Postback: 測試data和文字', 
-                                    data='怎麼會這樣',
+                                    data='123',
                                     text='123'
                                 ),
                                 MessageTemplateAction(
@@ -78,8 +78,12 @@ def handle_message(event):
         line_bot_api.push_message(uid, TextSendMessage('編號: '+ usespeak+'已被觸發\nData為: '+data))
         return 0
     
-if data == '怎麼會這樣':
-    line_bot_api.push_message(uid, TextSendMessage('Data為: '+data))
+@handler.add(PostbackEvent)
+def handle_postback(event):
+    if event.postback.data == '123':
+            line_bot_api.push_message(uid, TextSendMessage('Data為: '+data))
+
+
     
 if __name__ == '__main__':
     app.run(debug=True)
