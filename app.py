@@ -52,7 +52,7 @@ def handle_message(event):
         line_bot_api.push_message(uid, TextSendMessage(usespeak+'已經刪除成功'))
         return 0
     
-    elif event.message.text == "apple":
+    elif re.match('[#][0-9]{4}',usespeak):
         button_template_message =ButtonsTemplate(
                             thumbnail_image_url="https://i.imgur.com/eTldj2E.png?1",
                             title='Menu', 
