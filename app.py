@@ -55,8 +55,11 @@ def handle_message(event):
     
     elif re.match('[0-9]{4}',usespeak):
         button_template_message =ButtonsTemplate(
+                            thumbnail_image_url="https://i.imgur.com/eTldj2E.png?1",
                             title='Menu', 
                             text='Please select',
+                            ratio="1.51:1",
+                            image_size="cover",
                             actions=[
                                 PostbackTemplateAction(
                                     label='Postback: 測試data和文字', 
