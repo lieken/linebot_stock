@@ -7,6 +7,7 @@ from linebot.models import TemplateSendMessage, ButtonsTemplate, PostbackTemplat
 
 import mongodb
 import re
+import Stock_Strategy2
 
 app = Flask(__name__)
 
