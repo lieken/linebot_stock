@@ -27,11 +27,27 @@ def Price_Stock(stock):
     #T = str(df.iloc[dfL][0])
     #OP = str(df.iloc[dfL][3])
     #CP = str(df.iloc[dfL][6])
-   # Diff = str(df.iloc[dfL][7])
+    #Diff = str(df.iloc[dfL][7])
     #Tv = str(df.iloc[dfL][8])
     #Word = '時間: '+ T +'\n開盤價: '+OP+'\n收盤價: '+CP+'\n漲跌價差: '+Diff+'\n交易數量: '+Tv
-    return url2
+    return timeS
     
 
-
+def Basic_Stock(stock):
+    url = 'https://tw.stock.yahoo.com/q/q?s=' + str(stock) 
+    list_req = requests.get(url)
+    soup = BeautifulSoup(list_req.content, "html.parser")
+    Basic = {}
+    for i in range(0,10,1):
+        Basic[i] = soup.find_all('td', {'bgcolor':"#FFFfff"})[i].text
+    T = Basic[0]
+    OP = Basic[2]
+    CP =Basic[3]
+    x = Basic[4].split("\n", 1)
+    Diff = x[0]
+    S = Basic[7]
+    TOP = Basic[8]
+    BOT = Basic[9]
+    Word = '時間: '+ T +'\n買進: '+OP+'\n賣出: '+CP+'\n漲跌價差: '+Diff + '\n開盤: '+S + '\n最高: '+TOP + '\n最低: '+BOT
+    return Word
 
