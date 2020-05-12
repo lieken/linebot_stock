@@ -70,7 +70,7 @@ def handle_message(event):
                                     label='Uri: 可回傳網址', uri='http://www.google.com'
                                 ),
                                 PostbackTemplateAction(
-                                    label='基本資料', 
+                                    label='基本', 
                                     data='basic=' + usespeak
                                 )                                        
                             ]
