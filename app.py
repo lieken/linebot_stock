@@ -6,7 +6,6 @@ from linebot.models import TemplateSendMessage, ButtonsTemplate, PostbackTemplat
 
 
 import mongodb
-import Stock_Strategy2
 import re
 
 app = Flask(__name__)
@@ -93,7 +92,7 @@ def handle_postback(event):
     if data == "buy":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Data : Buy 代碼測試成功'))
     elif x[0] == "basic":
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Data : basic 代碼測試成功\n股票號碼為 : '+ x[1]+Stock_Strategy2.Name_Stock(x[1])))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Data : basic 代碼測試成功\n股票號碼為 : '+ x[1]))
 
     
 if __name__ == '__main__':
