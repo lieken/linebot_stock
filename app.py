@@ -14,7 +14,7 @@ app = Flask(__name__)
 line_bot_api = LineBotApi('/u+KR9NmRg9UVRk8NWvx578eKypyJUOaXrSltxJaKtY7hHTIM/UY5Nj9jm1vNNbsODDCxVM6HPftyh9oyTL/oFBuBtBI5cS3j/lWsfaWBu1Ea7OclWBxJnWWk10XyMogmtsyYvX60c9RFwSyRlLCwwdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('3a3ec40cb756d1640f70aa711372e431')
 line_bot_api.push_message('U1d4e838208d0f278714d687538a07600', TextSendMessage(text='-股票小助手已開始運作-'))
-
+usespeak  = ""
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -35,6 +35,7 @@ def callback():
 #訊息傳遞區塊
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    global  usespeak
     ### 抓到顧客的資料 ###
     profile = line_bot_api.get_profile(event.source.user_id)
     uid = profile.user_id #使用者ID
@@ -91,7 +92,7 @@ def handle_postback(event):
     if data == "buy":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Data : Buy 代碼測試成功'))
     elif data == "basic":
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Data : basic 代碼測試成功'))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Data : basic 代碼測試成功'+ usespeak))
     
 
     
