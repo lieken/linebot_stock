@@ -28,8 +28,7 @@ def Price_Stock(stock):
     CP = str(df.iloc[dfL][6])
     Diff = str(df.iloc[dfL][7])
     Tv = str(df.iloc[dfL][8])
-    #Word = '時間: '+ T +'\n開盤價: '+OP+'\n收盤價: '+CP+'\n漲跌價差: '+Diff+'\n交易數量: '+Tv
-    Word = Tv
+    Word = '時間: '+ T +'\n開盤價: '+OP+'\n收盤價: '+CP+'\n漲跌價差: '+Diff+'\n交易數量: '+Tv
     return Word
     
 
