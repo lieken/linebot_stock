@@ -20,7 +20,7 @@ def Price_Stock(stock):
     global  timeS
     #先設定要爬的時間
     timeS = datetime.datetime.strftime(datetime.datetime.now(),'%Y%m%d') 
-    #url2 ='https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=html&date='+timeS+'&stockNo='+str(stock) 
+    url2 ='https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=html&date='+timeS+'&stockNo='+str(stock) 
     #geturl2=pd.read_html(url2,encoding='utf-8',header=1)
     #df = pd.concat(geturl2)
     #dfL = len(df)-1
@@ -30,7 +30,7 @@ def Price_Stock(stock):
    # Diff = str(df.iloc[dfL][7])
     #Tv = str(df.iloc[dfL][8])
     #Word = '時間: '+ T +'\n開盤價: '+OP+'\n收盤價: '+CP+'\n漲跌價差: '+Diff+'\n交易數量: '+Tv
-    return timeS
+    return url2
     
 
 
