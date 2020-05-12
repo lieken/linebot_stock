@@ -73,7 +73,7 @@ def handle_message(event):
                                 ),
                                 PostbackTemplateAction(
                                     label='基本資料', 
-                                    data='basic'
+                                    data='basic=' + usespeak
                                 )                                        
                             ]
                         )
@@ -90,10 +90,12 @@ def handle_message(event):
 def handle_postback(event):
     # 注意!! 這裡的event.message是取不到text的
     data = event.postback.data
+    x = data.split("=", 1)
+    
     if data == "buy":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Data : Buy 代碼測試成功'))
-    elif data == "basic":
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Data : basic 代碼測試成功'+ word))
+    elif x[0] == "basic":
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Data : basic 代碼測試成功'+ x[1]))
     
 
     
