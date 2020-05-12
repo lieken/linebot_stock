@@ -68,7 +68,11 @@ def handle_message(event):
                                 ),
                                 URITemplateAction(
                                     label='Uri: 可回傳網址', uri='http://www.google.com'
-                                )
+                                ),
+                                PostbackTemplateAction(
+                                    label='基本資料', 
+                                    data='basic'
+                                )                                        
                             ]
                         )
         line_bot_api.push_message(uid, TemplateSendMessage(alt_text="Template Example", template=button_template_message))
@@ -86,6 +90,9 @@ def handle_postback(event):
     data = event.postback.data
     if data == "buy":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Data : Buy 代碼測試成功'))
+    elif data == "basic":
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Data : basic 代碼測試成功'))
+    
 
     
 if __name__ == '__main__':
