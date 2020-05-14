@@ -11,7 +11,7 @@ import Stock_Strategy2
 
 
 app = Flask(__name__)
-schedule.every().hour.do(job)
+
 
 line_bot_api = LineBotApi('/u+KR9NmRg9UVRk8NWvx578eKypyJUOaXrSltxJaKtY7hHTIM/UY5Nj9jm1vNNbsODDCxVM6HPftyh9oyTL/oFBuBtBI5cS3j/lWsfaWBu1Ea7OclWBxJnWWk10XyMogmtsyYvX60c9RFwSyRlLCwwdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('3a3ec40cb756d1640f70aa711372e431')
