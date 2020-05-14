@@ -4,3 +4,4 @@ line-bot-sdk
 pymongo
 schedule
 bs4
+pandas
