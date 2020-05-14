@@ -21,16 +21,16 @@ def Price_Stock(stock):
     #先設定要爬的時間
     timeS = datetime.datetime.strftime(datetime.datetime.now(),'%Y%m%d') 
     url2 ='https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=html&date='+timeS+'&stockNo='+str(stock) 
-    #geturl2=pd.read_html(url2,encoding='utf-8',header=1)
-    #df = pd.concat(geturl2)
-    #dfL = len(df)-1
-    #T = str(df.iloc[dfL][0])
-    #OP = str(df.iloc[dfL][3])
-    #CP = str(df.iloc[dfL][6])
-    #Diff = str(df.iloc[dfL][7])
-    #Tv = str(df.iloc[dfL][8])
-    #Word = '時間: '+ T +'\n開盤價: '+OP+'\n收盤價: '+CP+'\n漲跌價差: '+Diff+'\n交易數量: '+Tv
-    return timeS
+    geturl2=pd.read_html(url2,encoding='utf-8',header=1)
+    df = pd.concat(geturl2)
+    dfL = len(df)-1
+    T = str(df.iloc[dfL][0])
+    OP = str(df.iloc[dfL][3])
+    CP = str(df.iloc[dfL][6])
+    Diff = str(df.iloc[dfL][7])
+    Tv = str(df.iloc[dfL][8])
+    Word = '時間: '+ T +'\n開盤價: '+OP+'\n收盤價: '+CP+'\n漲跌價差: '+Diff+'\n交易數量: '+Tv
+    return Word
     
 
 def Basic_Stock(stock):
