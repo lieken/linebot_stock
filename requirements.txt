@@ -5,3 +5,4 @@ pymongo
 schedule
 bs4
 pandas
+lxml
