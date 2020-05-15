@@ -70,16 +70,19 @@ def handle_message(event):
                                     data='buy',
                                     text='123'
                                 ),
-                                MessageTemplateAction(
-                                    label='Message: 測試文字', text='message text'
-                                ),
-                                URITemplateAction(
-                                    label='Uri: 可回傳網址', uri='http://www.google.com'
-                                ),
                                 PostbackTemplateAction(
                                     label='基本', 
                                     data='basic=' + usespeak
-                                )                                        
+                                ),
+                                PostbackTemplateAction(
+                                    label='最近股票價格變動', 
+                                    data='BasicStock1=' + usespeak
+                                ),
+                                PostbackTemplateAction(
+                                    label='最近股票漲跌', 
+                                    data='BasicStock2=' + usespeak
+                                )                                      
+                                
                             ]
                         )
         line_bot_api.push_message(uid, TemplateSendMessage(alt_text="Template Example", template=button_template_message))
@@ -105,23 +108,7 @@ def handle_postback(event):
     if data == "buy":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Data : Buy 代碼測試成功'))
     elif x[0] == "basic":
-        message =ButtonsTemplate(
-                            title= '股票基本資料', 
-                            text= StockCompany1,
-                            actions=[
-                                PostbackTemplateAction(
-                                    label='最近股票價格變動', 
-                                    data='BasicStock1=0'
-                                ),
-                                PostbackTemplateAction(
-                                    label='最近股票漲跌', 
-                                    data='BasicStock2=0'
-                                )        
-                            ]
-                        )
-        line_bot_api.push_message(uid, TemplateSendMessage(alt_text= x[1]+'股票基本資料', template=message))
-        #line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Data : basic 代碼測試成功\n股票號碼為 : '+ x[1] + '\n\n' + StockCompany1 + '\n'+ StockCompany2 ))
-        #line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url=image[0], preview_image_url=image[0]))
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Data : basic 代碼測試成功\n股票號碼為 : '+ x[1] + '\n\n' + StockCompany1 + '\n'+ StockCompany2 ))
     elif x[0] == "BasicStock1":
         line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url=image[0], preview_image_url=image[0]))
     elif x[0] == "BasicStock2":
