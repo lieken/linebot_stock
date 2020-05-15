@@ -95,6 +95,7 @@ def handle_message(event):
 def handle_postback(event):
     # 注意!! 這裡的event.message是取不到text的
     data = event.postback.data
+    profile = line_bot_api.get_profile(event.source.user_id)
     uid = profile.user_id #使用者ID
     x = data.split("=", 1)
     StockCompany1 = Stock_Strategy2.Name_Stock(x[1])
