@@ -117,7 +117,7 @@ def handle_postback(event):
                                 )        
                             ]
                         )
-        line_bot_api.reply_message(event.reply_token,message)
+        line_bot_api.push_message(event.reply_token, TemplateSendMessage(alt_text= x[1]+'股票基本資料', template=message))
         #line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Data : basic 代碼測試成功\n股票號碼為 : '+ x[1] + '\n\n' + StockCompany1 + '\n'+ StockCompany2 ))
         #line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url=image[0], preview_image_url=image[0]))
     elif x[0] == "BasicStock1":
