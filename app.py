@@ -107,7 +107,7 @@ def handle_postback(event):
     elif x[0] == "basic":
         message =ButtonsTemplate(
                             title= '股票基本資料', 
-                            text= StockCompany1 + '\n'+ StockCompany2 ,
+                            text= StockCompany1,
                             actions=[
                                 PostbackTemplateAction(
                                     label='最近股票價格變動', 
