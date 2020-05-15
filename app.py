@@ -66,7 +66,7 @@ def handle_message(event):
                             text='關於 '+mongodb.Name_Stock(usespeak[0:4])+' 您想查看些什麼呢?',
                             actions=[
                                 PostbackTemplateAction(
-                                    label='基本', 
+                                    label='目前股價相關資訊', 
                                     data='basic=' + usespeak
                                 ),
                                 PostbackTemplateAction(
