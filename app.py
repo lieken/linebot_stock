@@ -95,6 +95,7 @@ def handle_message(event):
 def handle_postback(event):
     # 注意!! 這裡的event.message是取不到text的
     data = event.postback.data
+    uid = profile.user_id #使用者ID
     x = data.split("=", 1)
     StockCompany1 = Stock_Strategy2.Name_Stock(x[1])
     StockCompany2 = Stock_Strategy2.Basic_Stock(x[1])
@@ -117,7 +118,7 @@ def handle_postback(event):
                                 )        
                             ]
                         )
-        line_bot_api.push_message(event.reply_token, TemplateSendMessage(alt_text= x[1]+'股票基本資料', template=message))
+        line_bot_api.push_message(uid, TemplateSendMessage(alt_text= x[1]+'股票基本資料', template=message))
         #line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Data : basic 代碼測試成功\n股票號碼為 : '+ x[1] + '\n\n' + StockCompany1 + '\n'+ StockCompany2 ))
         #line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url=image[0], preview_image_url=image[0]))
     elif x[0] == "BasicStock1":
