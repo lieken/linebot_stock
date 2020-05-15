@@ -103,7 +103,7 @@ def handle_postback(event):
         StockCompany1 = Stock_Strategy2.Name_Stock(x[1])
         StockCompany2 = Stock_Strategy2.Basic_Stock(x[1])
         image = mongodb.show_user_BasicStock_fountion(x[1])
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Data : basic 代碼測試成功\n股票號碼為 : '+ x[1] + '\n\n' + StockCompany1 + '\n'+ StockCompany2 ))
+        #line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Data : basic 代碼測試成功\n股票號碼為 : '+ x[1] + '\n\n' + StockCompany1 + '\n'+ StockCompany2 ))
         line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url=image[0], preview_image_url=image[0]))
 
 
