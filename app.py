@@ -95,21 +95,36 @@ def handle_message(event):
 def handle_postback(event):
     # 注意!! 這裡的event.message是取不到text的
     data = event.postback.data
+    StockCompany1 = Stock_Strategy2.Name_Stock(x[1])
+    StockCompany2 = Stock_Strategy2.Basic_Stock(x[1])
+    image = mongodb.show_user_BasicStock_fountion(x[1])
     x = data.split("=", 1)
     
     if data == "buy":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Data : Buy 代碼測試成功'))
     elif x[0] == "basic":
-        StockCompany1 = Stock_Strategy2.Name_Stock(x[1])
-        StockCompany2 = Stock_Strategy2.Basic_Stock(x[1])
-        image = mongodb.show_user_BasicStock_fountion(x[1])
-       # line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Data : basic 代碼測試成功\n股票號碼為 : '+ x[1] + '\n\n' + StockCompany1 + '\n'+ StockCompany2 ))
+        message =ButtonsTemplate(
+                            title= '股票基本資料', 
+                            text='Data : basic 代碼測試成功\n股票號碼為 : '+ x[1] + '\n\n' + StockCompany1 + '\n'+ StockCompany2 ,
+                            actions=[
+                                PostbackTemplateAction(
+                                    label='最近股票價格變動', 
+                                    data='BasicStock1=0'
+                                ),
+                                PostbackTemplateAction(
+                                    label='最近股票漲跌', 
+                                    data='BasicStock2=0'
+                                )        
+                            ]
+                        )
+        line_bot_api.reply_message(event.reply_token,message)
+        #line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Data : basic 代碼測試成功\n股票號碼為 : '+ x[1] + '\n\n' + StockCompany1 + '\n'+ StockCompany2 ))
+        #line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url=image[0], preview_image_url=image[0]))
+    elif x[0] == "BasicStock1":
         line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url=image[0], preview_image_url=image[0]))
-        #line_bot_api.reply_message(event.reply_token, TextSendMessage(text = StockCompany1))
-        #line_bot_api.reply_message(event.reply_token, TextSendMessage(text = StockCompany2))
-
-
-
-    
+    elif x[0] == "BasicStock2":
+        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url=image[1], preview_image_url=image[1]))
+        
+        
 if __name__ == '__main__':
     app.run(debug=True)
