@@ -5,8 +5,12 @@ import datetime
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+from datetime import date
 
-
+today = str(date.today())
+###############################################################################
+#                       股票機器人 Python基礎教學 【pymongo教學】                      #
+###############################################################################
 
 # Authentication Database認證資料庫
 Authdb='linebot_stock'
@@ -41,7 +45,15 @@ def show_user_stock_fountion():
     cel=list(collect.find({"data": 'care_stock'}))
 
     return cel
-
+#----------------------------秀出基本股票數值的圖片--------------------------
+def show_user_BasicStock_fountion():  
+    db=constructor()
+    collect = db['BasicStock_StockImages']
+    cel=list(collect.find({"date": today}))
+    URL= {}
+    for i in range(0,2,1):
+        URL[i]=cel[i]['url']
+    return URL
 
 #----------------------------股票處理--------------------------------
 def Name_Stock(stock):
@@ -51,3 +63,31 @@ def Name_Stock(stock):
     StockN='/q/bc?s='+str(stock) 
     StockName = soup.find('a', {'href':StockN}).text
     return StockName
+
+#----------------------------儲存三大法人的圖片--------------------------
+def Save_ThreeStock_fountion(stock, url):  
+    db=constructor()
+    collect = db['ThreeStock_StockImages']
+    collect.insert({"stock": stock,
+                    "url": url,
+                    "data_info": "Three_Stock",
+                    "date": today
+                    })
+
+#----------------------------儲存基本股票數值的圖片--------------------------
+def Save_BasicStock_fountion(stock, url):  
+    db=constructor()
+    collect = db['BasicStock_StockImages']
+    collect.insert({"stock": stock,
+                    "url": url[0],
+                    "data_info": "BasicStock1",
+                    "date": today
+                    })
+    collect.insert({"stock": stock,
+                    "url": url[1],
+                    "data_info": "BasicStock2",
+                    "date": today
+                    })
+
+
+
