@@ -46,15 +46,14 @@ def show_user_stock_fountion():
 
     return cel
 #----------------------------秀出基本股票數值的圖片--------------------------
-def show_user_BasicStock_fountion():  
+def show_user_BasicStock_fountion(stock):  
     db=constructor()
     collect = db['BasicStock_StockImages']
-    cel=list(collect.find({"date": today}))
+    cel=list(collect.find({ "stock": int(stock), "date": today}))
     URL= {}
     for i in range(0,2,1):
         URL[i]=cel[i]['url']
     return URL
-
 #----------------------------股票處理--------------------------------
 def Name_Stock(stock):
     url = 'https://tw.stock.yahoo.com/q/q?s=' + str(stock) 
@@ -88,6 +87,5 @@ def Save_BasicStock_fountion(stock, url):
                     "data_info": "BasicStock2",
                     "date": today
                     })
-
 
 
