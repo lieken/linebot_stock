@@ -62,7 +62,7 @@ def handle_message(event):
     
     elif re.match('[0-9]{4}',usespeak):
         button_template_message =ButtonsTemplate(
-                            title= usespeak +'股票基本資料', 
+                            title= '股票基本資料', 
                             text='關於 '+mongodb.Name_Stock(usespeak[0:4])+' 您想查看些什麼呢?',
                             actions=[
                                 PostbackTemplateAction(
@@ -93,8 +93,6 @@ def handle_message(event):
 def handle_postback(event):
     # 注意!! 這裡的event.message是取不到text的
     data = event.postback.data
-    profile = line_bot_api.get_profile(event.source.user_id)
-    uid = profile.user_id #使用者ID
     x = data.split("=", 1)
     StockCompany1 = Stock_Strategy2.Name_Stock(x[1])
     StockCompany2 = Stock_Strategy2.Basic_Stock(x[1])
@@ -104,7 +102,7 @@ def handle_postback(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Data : Buy 代碼測試成功'))
         #'Data : basic 代碼測試成功\n股票號碼為 : '+ x[1] + '\n\n' + 
     elif x[0] == "basic":
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text= StockCompany1 + '\n'+ StockCompany2 ))
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text= StockCompany2 ))
     elif x[0] == "BasicStock1":
         line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url=image[0], preview_image_url=image[0]))
     elif x[0] == "BasicStock2":
