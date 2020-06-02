@@ -5,22 +5,18 @@ Created on Tue May 26 13:02:30 2020
 @author: zang
 """
 from linebot.models import FlexSendMessage
-a = 50
+
 def STOCK_BASIC(stockbasic,BASIC):
-    
-    
     #stockbasic處理
    color2 = "#00DB00"
    if float(stockbasic[5]) > 0:
        color2 = "#FF0000"
        diff ="+ " + str(stockbasic[5])
-   elif float(stockbasic[5]) < 0 :
-       color2 = "#00DB00"
-       diff =" " + str(stockbasic[5])
+   #elif float(stockbasic[5]) < 0 :
+    #   diff =" " + str(stockbasic[5])
        
    if stockbasic[6] == "-":
        Nnprice = "-"
-       
    else :
        Nnprice = float(stockbasic[6])
 
@@ -35,7 +31,7 @@ def STOCK_BASIC(stockbasic,BASIC):
    #stockStatements
    
    
-   STOCK_BASIC = FlexSendMessage(alt_text="hello", contents={
+   STOCK_BASIC = FlexSendMessage(alt_text=BASIC+"股票資訊", contents={
   "type": "carousel",
   "contents": [
     {
@@ -167,7 +163,7 @@ def STOCK_BASIC(stockbasic,BASIC):
             "action": {
               "type": "postback",
               "label": "最近資訊",
-              "data": "LatestNews="+str(BASIC)
+              "data": "LatestNews="+BASIC
             }
           },
           {
@@ -176,7 +172,7 @@ def STOCK_BASIC(stockbasic,BASIC):
             "action": {
               "type": "postback",
               "label": "三大法人資訊",
-              "data": "ThreeInfo="+str(BASIC)
+              "data": "ThreeInfo="+BASIC
             }
           }
         ]
