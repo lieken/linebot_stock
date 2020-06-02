@@ -10,7 +10,7 @@ from linebot.models import (
 import mongodb
 import re
 import Stock_Strategy2
-
+import Flexmessage
 import twstock
 import Stock_statement
 app = Flask(__name__)
