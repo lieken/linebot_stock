@@ -76,7 +76,7 @@ def Save_ThreeStock_fountion(stock, url):
                     })
 
 #----------------------------儲存基本股票數值的圖片--------------------------
-    stock = 2002
+
 def Save_BasicStock_fountion(stock, url):  
     db=constructor()
     basicstock = Stock_Data2.Basic_Stock2(stock)
@@ -109,4 +109,6 @@ def delete_user_Stockfountion(stock):
     collect.remove({"stock": stock})
     collect = db['ThreeStock_StockImages']
     collect.remove({"stock": stock})
+    
+    
     
