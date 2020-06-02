@@ -2,14 +2,17 @@ from flask import Flask, request, abort
 from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import *
-from linebot.models import TemplateSendMessage, ButtonsTemplate, PostbackTemplateAction, MessageTemplateAction, URITemplateAction,PostbackEvent
-
-
+from linebot.models import (
+        TemplateSendMessage,CarouselTemplate,
+        CarouselColumn,PostbackAction,MessageAction,URIAction,FlexSendMessage,
+        BubbleContainer,BoxComponent,ImageComponent,TextComponent
+)
 import mongodb
 import re
 import Stock_Strategy2
-import schedule
 
+import twstock
+import Stock_statement
 app = Flask(__name__)
 
 
@@ -17,10 +20,7 @@ line_bot_api = LineBotApi('/u+KR9NmRg9UVRk8NWvx578eKypyJUOaXrSltxJaKtY7hHTIM/UY5
 handler = WebhookHandler('3a3ec40cb756d1640f70aa711372e431')
 line_bot_api.push_message('U1d4e838208d0f278714d687538a07600', TextSendMessage(text='-股票小助手已開始運作-'))
 
-def job():
-    line_bot_api.push_message('U1d4e838208d0f278714d687538a07600', TextSendMessage(text='每兩小時的提醒來了'))
-    
-schedule.every(2).hours.do(job)
+
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
@@ -61,26 +61,22 @@ def handle_message(event):
         return 0
     
     elif re.match('[0-9]{4}',usespeak):
-        button_template_message =ButtonsTemplate(
-                            title= '股票基本資料', 
-                            text='關於 '+mongodb.Name_Stock(usespeak[0:4])+' 您想查看些什麼呢?',
-                            actions=[
-                                PostbackTemplateAction(
-                                    label='目前股價相關資訊', 
-                                    data='basic=' + usespeak
-                                ),
-                                PostbackTemplateAction(
-                                    label='最近股票價格變動', 
-                                    data='BasicStock1=' + usespeak
-                                ),
-                                PostbackTemplateAction(
-                                    label='最近股票漲跌', 
-                                    data='BasicStock2=' + usespeak
-                                )                                      
-                                
-                            ]
-                        )
-        line_bot_api.push_message(uid, TemplateSendMessage(alt_text="Template Example", template=button_template_message))
+        stock = twstock.realtime.get(str(usespeak))
+        stockbasic = [stock["info"]["code"] +" " + stock["info"]["name"],
+              float(stock["realtime"]["open"]),
+              float(stock["realtime"]["high"]),
+              float(stock["realtime"]["low"]),
+              stock["info"]["time"],
+              Stock_Strategy2.Price_Stock2(number),
+              stock["realtime"]["latest_trade_price"],
+              stock["realtime"]["trade_volume"]
+              ]
+        Statements = Stock_statement.FinancialStatements(str(usespeak))
+        stockStatements = [Statements[0].loc[2019],Statements[1].loc[2019],
+                   Statements[2].loc[2019] ]
+        Flex_message = Flexmessage.STOCK_BASIC(stockbasic,stockStatements)
+        
+        line_bot_api.push_message(uid,Flex_message)
         return 0
 
     elif usespeak == '123':
