@@ -5,7 +5,7 @@ from linebot.models import *
 from linebot.models import (
         TemplateSendMessage,CarouselTemplate,
         CarouselColumn,PostbackAction,MessageAction,URIAction,FlexSendMessage,
-        BubbleContainer,BoxComponent,ImageComponent,TextComponent
+        BubbleContainer,BoxComponent,ImageComponent,TextComponent,ImageSendMessage
 )
 import mongodb
 import re
