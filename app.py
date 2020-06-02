@@ -67,7 +67,7 @@ def handle_message(event):
               float(stock["realtime"]["high"]),
               float(stock["realtime"]["low"]),
               stock["info"]["time"],
-              Stock_Strategy2.Price_Stock2(number),
+              Stock_Strategy2.Price_Stock2(str(usespeak)),
               stock["realtime"]["latest_trade_price"],
               stock["realtime"]["trade_volume"]
               ]
