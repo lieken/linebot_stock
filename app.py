@@ -1,7 +1,6 @@
 from flask import Flask, request, abort
 from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
-from linebot.exceptions import LineBotApiError
 from linebot.models import (
         TemplateSendMessage,CarouselTemplate,
         CarouselColumn,PostbackAction,MessageAction,URIAction,FlexSendMessage,
@@ -99,8 +98,10 @@ def handle_postback(event):
         try:  
             line_bot_api.push_message(event.reply_token,ImageSendMessage(original_content_url=image[0], preview_image_url=image[0]))
             line_bot_api.push_message(event.reply_token,ImageSendMessage(original_content_url=image[1], preview_image_url=image[1]))
-        except LineBotApiError as e:
-            raise e
+        except InvalidSignatureError:
+                abort(400)
+        return 'OK'
+
 
     elif x[0] == "ThreeInfo":
         line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url=image[0], preview_image_url=image[0]))
