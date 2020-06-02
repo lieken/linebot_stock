@@ -7,6 +7,7 @@ from linebot.models import (
         CarouselColumn,PostbackAction,MessageAction,URIAction,FlexSendMessage,
         BubbleContainer,BoxComponent,ImageComponent,TextComponent,ImageSendMessage
 )
+from linebot.exceptions import LineBotApiError
 import mongodb
 import re
 import Stock_Strategy2
@@ -96,8 +97,8 @@ def handle_postback(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Data : Buy 代碼測試成功'))
         #'Data : basic 代碼測試成功\n股票號碼為 : '+ x[1] + '\n\n' + 
     elif x[0] == "LatestNews":
-            line_bot_api.push_message(event.reply_token,ImageSendMessage(original_content_url=image[0], preview_image_url=image[0]))
-            line_bot_api.push_message(event.reply_token,ImageSendMessage(original_content_url=image[1], preview_image_url=image[1]))
+        line_bot_api.push_message(event.reply_token,ImageSendMessage(original_content_url=image[0], preview_image_url=image[0]))
+        line_bot_api.push_message(event.reply_token,ImageSendMessage(original_content_url=image[1], preview_image_url=image[1]))
 
     elif x[0] == "ThreeInfo":
         line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url=image[0], preview_image_url=image[0]))
