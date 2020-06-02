@@ -6,6 +6,7 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 from datetime import date
+import Stock_Data2
 
 today = str(date.today())
 ###############################################################################
@@ -67,25 +68,45 @@ def Name_Stock(stock):
 def Save_ThreeStock_fountion(stock, url):  
     db=constructor()
     collect = db['ThreeStock_StockImages']
-    collect.insert({"stock": stock,
+    collect.remove({"stock": int(stock)})
+    collect.insert({"stock": int(stock),
                     "url": url,
                     "data_info": "Three_Stock",
                     "date": today
                     })
 
 #----------------------------儲存基本股票數值的圖片--------------------------
+    stock = 2002
 def Save_BasicStock_fountion(stock, url):  
     db=constructor()
+    basicstock = Stock_Data2.Basic_Stock2(stock)
     collect = db['BasicStock_StockImages']
-    collect.insert({"stock": stock,
+    collect.remove({"stock": int(stock)})
+    collect.insert({"stock": int(stock),
                     "url": url[0],
                     "data_info": "BasicStock1",
                     "date": today
                     })
-    collect.insert({"stock": stock,
+    collect.insert({"stock": int(stock),
                     "url": url[1],
                     "data_info": "BasicStock2",
                     "date": today
                     })
+    collect = db['BasicStock']
+    collect.remove({"stock": stock})
+    #時間 殖利率 本益比 股價淨值比
+    collect.insert({"stock": int(stock),
+                    "DY": basicstock[1],
+                    "PE": basicstock[2],
+                    "PBR": basicstock[3],
+                    "date": basicstock[0]
+                    })
 
 
+def delete_user_Stockfountion(stock):  
+    db=constructor()
+    collect = db['BasicStock_StockImages']
+    collect.remove({"stock": stock})
+    collect = db['ThreeStock_StockImages']
+    collect.remove({"stock": stock})
+    
