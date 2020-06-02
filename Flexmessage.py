@@ -6,7 +6,7 @@ Created on Tue May 26 13:02:30 2020
 """
 from linebot.models import FlexSendMessage
 a = 50
-def STOCK_BASIC(stockbasic,stockStatements,BASIC):
+def STOCK_BASIC(stockbasic,BASIC):
     
     
     #stockbasic處理
@@ -176,16 +176,13 @@ def STOCK_BASIC(stockbasic,stockStatements,BASIC):
             "action": {
               "type": "postback",
               "label": "三大法人資訊",
-              "data": " ThreeInfo="
+              "data": "ThreeInfo="+str(BASIC)
             }
           }
         ]
       }
     }
-            
-            
-            
-            
+
   ]
 }
 )
