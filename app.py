@@ -74,7 +74,7 @@ def handle_message(event):
         Statements = Stock_statement.FinancialStatements(str(usespeak))
         stockStatements = [Statements[0].loc[2019],Statements[1].loc[2019],
                    Statements[2].loc[2019] ]
-        Flex_message = Flexmessage.STOCK_BASIC(stockbasic,stockStatements)
+        Flex_message = Flexmessage.STOCK_BASIC(stockbasic,stockStatements,str(usespeak))
         
         line_bot_api.push_message(uid,Flex_message)
         return 0
