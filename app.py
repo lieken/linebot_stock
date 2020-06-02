@@ -90,8 +90,6 @@ def handle_postback(event):
     # 注意!! 這裡的event.message是取不到text的
     data = event.postback.data
     x = data.split("=", 1)
-    StockCompany1 = Stock_Strategy2.Name_Stock(x[1])
-    StockCompany2 = Stock_Strategy2.Basic_Stock(x[1])
     image = mongodb.show_user_BasicStock_fountion(x[1])
     
     if data == "buy":
