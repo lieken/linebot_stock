@@ -167,7 +167,7 @@ def STOCK_BASIC(stockbasic,stockStatements):
             "action": {
               "type": "postback",
               "label": "最近資訊",
-              "data": " LatestNews"
+              "data": " LatestNews="
             }
           },
           {
@@ -176,7 +176,7 @@ def STOCK_BASIC(stockbasic,stockStatements):
             "action": {
               "type": "postback",
               "label": "三大法人資訊",
-              "data": " ThreeInfo"
+              "data": " ThreeInfo="
             }
           }
         ]
