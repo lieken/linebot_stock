@@ -12,14 +12,14 @@ def Price_Stock(stock):
     Basic = {}
     for i in range(0,10,1):
         Basic[i] = soup.find_all('td', {'bgcolor':"#FFFfff"})[i].text
-    T = Basic[0]
-    OP = Basic[2]
-    CP =Basic[3]
+    #T = Basic[0]
+    #OP = Basic[2]
+    #CP =Basic[3]
     x = Basic[4].split("\n", 1)
     Diff = x[0].replace('▽', '-').replace('△', '')
-    S = Basic[7]
-    TOP = Basic[8]
-    BOT = Basic[9]
-    Word = '時間: '+ T +'\n買進: '+OP+'\n賣出: '+CP+'\n漲跌價差: '+Diff + '\n開盤: '+S + '\n最高: '+TOP + '\n最低: '+BOT
+    #S = Basic[7]
+    #TOP = Basic[8]
+    #BOT = Basic[9]
+    #Word = '時間: '+ T +'\n買進: '+OP+'\n賣出: '+CP+'\n漲跌價差: '+Diff + '\n開盤: '+S + '\n最高: '+TOP + '\n最低: '+BOT
     return Diff
 
