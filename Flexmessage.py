@@ -6,7 +6,7 @@ Created on Tue May 26 13:02:30 2020
 """
 from linebot.models import FlexSendMessage
 a = 50
-def STOCK_BASIC(stockbasic,stockStatements):
+def STOCK_BASIC(stockbasic,stockStatements,number):
     
     
     #stockbasic處理
@@ -167,7 +167,7 @@ def STOCK_BASIC(stockbasic,stockStatements):
             "action": {
               "type": "postback",
               "label": "最近資訊",
-              "data": " LatestNews="
+              "data": " LatestNews="+str(number)
             }
           },
           {
