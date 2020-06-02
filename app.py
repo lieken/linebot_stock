@@ -10,10 +10,10 @@ from linebot.models import (
 from linebot.exceptions import LineBotApiError
 import mongodb
 import re
-import Stock_Strategy2
+import Stock_Strategy
 import Flexmessage
 import twstock
-import Stock_statement
+
 app = Flask(__name__)
 
 
@@ -68,22 +68,16 @@ def handle_message(event):
               float(stock["realtime"]["high"]),
               float(stock["realtime"]["low"]),
               stock["info"]["time"],
-              Stock_Strategy2.Price_Stock2(str(usespeak)),
+              Stock_Strategy.Price_Stock(str(usespeak)),
               stock["realtime"]["latest_trade_price"],
               stock["realtime"]["trade_volume"]
               ]
-        Statements = Stock_statement.FinancialStatements(str(usespeak))
-        stockStatements = [Statements[0].loc[2019],Statements[1].loc[2019],
-                   Statements[2].loc[2019] ]
-        Flex_message = Flexmessage.STOCK_BASIC(stockbasic,stockStatements,str(usespeak))
+
+        Flex_message = Flexmessage.STOCK_BASIC(stockbasic,str(usespeak))
         
         line_bot_api.push_message(uid,Flex_message)
         return 0
 
-    elif usespeak == '123':
-        line_bot_api.push_message(uid, TextSendMessage('Text : 測試編號 '+ usespeak+' 已被觸發'))
-        return 0
-    
 
 # 處理按下按鈕後的postback
 @handler.add(PostbackEvent)
@@ -105,9 +99,7 @@ def handle_postback(event):
                 raise e
     elif x[0] == "ThreeInfo":
         line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url=image[0], preview_image_url=image[0]))
-    elif x[0] == "BasicStock2":
-        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url=image[1], preview_image_url=image[1]))
-        
+     
         
 if __name__ == '__main__':
     app.run(debug=True)
