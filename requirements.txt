@@ -7,4 +7,3 @@ bs4
 pandas
 lxml
 twstock
-StringIO
