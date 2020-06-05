@@ -77,6 +77,8 @@ def handle_message(event):
 # 處理postback
 @handler.add(PostbackEvent)
 def handle_postback(event):
+    profile = line_bot_api.get_profile(event.source.user_id)
+    uid = profile.user_id #使用者ID
     # 注意!! 這裡的event.message是取不到text的
     data = event.postback.data
     x = data.split("=", 1)
@@ -100,7 +102,7 @@ def handle_postback(event):
         )
     )
     
-        line_bot_api.push_message(to,QuickReply_text_message)
+        line_bot_api.push_message(uid,QuickReply_text_message)
     
         
 if __name__ == '__main__':
