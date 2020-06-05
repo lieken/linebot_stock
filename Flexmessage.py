@@ -26,7 +26,7 @@ def STOCK_BASIC(stockbasic,number):
    price = "開盤: " + str(stockbasic[1])
    hprice = "最高: " + str(stockbasic[2])
    lprice = "最低: " + str(stockbasic[3])
-   time = stockbasic[4]
+   time = "hi"#stockbasic[4]
    volume = "交易數量: " + str(stockbasic[7])
    
    STOCK_BASIC = FlexSendMessage(alt_text="hello", contents={
