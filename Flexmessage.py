@@ -227,7 +227,7 @@ def STOCK_BASIC(stockbasic,stock,number):
           },
           {
             "type": "text",
-            "text": str(stock["ROA"]+"%"),
+            "text": str(stock["ROA"])+"%",
             "size": "md",
             "color": "#111111",
             "align": "center",
@@ -260,7 +260,7 @@ def STOCK_BASIC(stockbasic,stock,number):
           },
           {
             "type": "text",
-            "text": str(stock["ROE"]+"%"),
+            "text": str(stock["ROE"])+"%",
             "size": "md",
             "color": "#111111",
             "align": "center",
@@ -293,7 +293,7 @@ def STOCK_BASIC(stockbasic,stock,number):
           },
           {
             "type": "text",
-            "text": str(stock["money1"]+"%"),
+            "text": str(stock["money1"])+"%",
             "size": "md",
             "color": "#111111",
             "align": "center",
@@ -326,7 +326,7 @@ def STOCK_BASIC(stockbasic,stock,number):
           },
           {
             "type": "text",
-            "text": str(stock["money2"]+"%"),
+            "text": str(stock["money2"])+"%",
             "size": "md",
             "color": "#111111",
             "align": "center",
@@ -359,7 +359,7 @@ def STOCK_BASIC(stockbasic,stock,number):
           },
           {
             "type": "text",
-            "text": str(stock["money3"]+"%"),
+            "text": str(stock["money3"])+"%",
             "size": "md",
             "color": "#111111",
             "align": "center",
@@ -402,7 +402,7 @@ def STOCK_BASIC(stockbasic,stock,number):
           },
           {
             "type": "text",
-            "text": str(stock["PE"]+" 倍"),
+            "text": str(stock["PE"])+" 倍",
             "size": "md",
             "color": "#111111",
             "align": "center",
@@ -435,7 +435,7 @@ def STOCK_BASIC(stockbasic,stock,number):
           },
           {
             "type": "text",
-            "text": str(stock["PBR"]+"%"),
+            "text": str(stock["PBR"])+" 倍",
             "size": "md",
             "color": "#111111",
             "align": "center",
@@ -468,7 +468,7 @@ def STOCK_BASIC(stockbasic,stock,number):
           },
           {
             "type": "text",
-            "text": str(stock["DY"]+" 倍"),
+            "text": str(stock["DY"])+"%",
             "size": "md",
             "color": "#111111",
             "align": "center",
