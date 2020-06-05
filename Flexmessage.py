@@ -26,7 +26,7 @@ def STOCK_BASIC(stockbasic,stock,number):
    time = today
    volume = "交易數量: " + str(stockbasic[7])
    
-   STOCK_BASIC = FlexSendMessage(alt_text="hello", contents={
+   STOCK_BASIC = FlexSendMessage(alt_text= number + " 股票資訊", contents={
   "type": "carousel",
   "contents": [
     {
@@ -497,7 +497,7 @@ def STOCK_BASIC(stockbasic,stock,number):
       {
         "type": "text",
         "text": stock["Appraisal"]+stock["Appraisal2"],
-        "size": "lg",
+        "size": "md",
         "color": "#555555",
         "flex": 3,
         "weight": "bold",
