@@ -24,7 +24,7 @@ def STOCK_BASIC(stockbasic,number):
    hprice = "最高: " + str(stockbasic[2])
    lprice = "最低: " + str(stockbasic[3])
    time = str(date.today())
-   volume = "交易數量: " + str(stockbasic[7])
+   volume = "今日交易數量: " + str(stockbasic[7])
    
    STOCK_BASIC = FlexSendMessage(alt_text="hello", contents={
   "type": "carousel",
