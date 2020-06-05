@@ -16,7 +16,7 @@ import twstock
 
 app = Flask(__name__)
 
-
+a = 1
 line_bot_api = LineBotApi('/u+KR9NmRg9UVRk8NWvx578eKypyJUOaXrSltxJaKtY7hHTIM/UY5Nj9jm1vNNbsODDCxVM6HPftyh9oyTL/oFBuBtBI5cS3j/lWsfaWBu1Ea7OclWBxJnWWk10XyMogmtsyYvX60c9RFwSyRlLCwwdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('3a3ec40cb756d1640f70aa711372e431')
 line_bot_api.push_message('U1d4e838208d0f278714d687538a07600', TextSendMessage(text='請輸入股票代號'))
@@ -70,9 +70,8 @@ def handle_message(event):
         else :
             line_bot_api.push_message(uid, TextSendMessage(text='您輸入的並不是上市股票號碼'))
     else :
-        line_bot_api.push_message(uid, TextSendMessage(text='您輸入的並不是股票號碼'))
-    
-
+        if a=1:
+            line_bot_api.push_message(uid, TextSendMessage(text='您輸入的並不是股票號碼'))
 
 # 處理postback
 @handler.add(PostbackEvent)
@@ -83,11 +82,13 @@ def handle_postback(event):
     data = event.postback.data
     x = data.split("=", 1)
     #image = Stock_Strategy.show_user_BasicStock_fountion(x[1])
-    
+    global a
+
     if data == "buy":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Data : Buy 代碼測試成功'))
         #'Data : basic 代碼測試成功\n股票號碼為 : '+ x[1] + '\n\n' + 
     elif x[0] == "MoreNews":
+        a=0
         QuickReply_text_message = TextSendMessage(
                 text = '你想要什麼方面資訊呢',
                 quick_reply = QuickReply(
