@@ -80,7 +80,7 @@ def handle_postback(event):
     # 注意!! 這裡的event.message是取不到text的
     data = event.postback.data
     x = data.split("=", 1)
-    image = Stock_Strategy.show_user_BasicStock_fountion(x[1])
+    #image = Stock_Strategy.show_user_BasicStock_fountion(x[1])
     
     if data == "buy":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Data : Buy 代碼測試成功'))
@@ -101,9 +101,7 @@ def handle_postback(event):
     )
     
         line_bot_api.push_message(to,QuickReply_text_message)
-    elif x[0] == "ThreeInfo":
-        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url=image[0], preview_image_url=image[0]))
-     
+    
         
 if __name__ == '__main__':
     app.run(debug=True)
