@@ -1,13 +1,10 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue May 26 13:02:30 2020
-@author: zang
-"""
 from linebot.models import FlexSendMessage
+from datetime import date
 
 def STOCK_BASIC(stockbasic,number):
     #stockbasic處理
    color2 = "#00DB00"
+   
    if float(stockbasic[5]) >= 0:
        color2 = "#FF0000"
        diff ="+ " + str(stockbasic[5])
@@ -26,7 +23,7 @@ def STOCK_BASIC(stockbasic,number):
    price = "開盤: " + str(stockbasic[1])
    hprice = "最高: " + str(stockbasic[2])
    lprice = "最低: " + str(stockbasic[3])
-   time = "hi"#stockbasic[4]
+   time = str(date.today())
    volume = "交易數量: " + str(stockbasic[7])
    
    STOCK_BASIC = FlexSendMessage(alt_text="hello", contents={
