@@ -46,7 +46,7 @@ def handle_message(event):
     profile = line_bot_api.get_profile(event.source.user_id)
     uid = profile.user_id #使用者ID
     usespeak=str(event.message.text) #使用者講的話
-
+    #usespeak = "2002"
     if re.match('[0-9]{4}',usespeak):
         if usespeak in twstock.twse :
             #資料處理
@@ -60,8 +60,9 @@ def handle_message(event):
                           stock["realtime"]["latest_trade_price"],
                           stock["realtime"]["trade_volume"]
                           ]
+            stockanalytics = Stock_Strategy.show_user_stockanalytics(usespeak)
 
-            Flex_message = Flexmessage.STOCK_BASIC(stockbasic,str(usespeak))
+            Flex_message = Flexmessage.STOCK_BASIC(stockbasic,stockanalytics,str(usespeak))
         
             line_bot_api.push_message(uid,Flex_message)
             return 0
