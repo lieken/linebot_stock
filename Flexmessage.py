@@ -1,17 +1,37 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue May 26 13:02:30 2020
+@author: zang
+"""
 from linebot.models import FlexSendMessage
 from datetime import date
 
-def STOCK_BASIC(stockbasic,number):
+"""
+            stockanalytics = [
+                    stock["ROA"],
+                    stock["ROE"],
+                    stock["money1"],
+                    stock["money2"],
+                    stock["money3"],
+                    stock["PE"],
+                    stock["PBR"],
+                    stock["DY"],
+                    stock["goal"],
+                    stock["Appraisal"],
+                    stock["Appraisal2"]   
+                    ]
+            """
+def STOCK_BASIC(stockbasic,stock,number):
     #stockbasic處理
    color2 = "#00DB00"
-   
+   today = str(date.today())
    if float(stockbasic[5]) >= 0:
        color2 = "#FF0000"
        diff ="+ " + str(stockbasic[5])
    elif float(stockbasic[5]) < 0 :
        color2 = "#00DB00"
        diff =" " + str(stockbasic[5])
-       
+
    if stockbasic[6] == "-":
        Nnprice = "-"
        
@@ -23,8 +43,8 @@ def STOCK_BASIC(stockbasic,number):
    price = "開盤: " + str(stockbasic[1])
    hprice = "最高: " + str(stockbasic[2])
    lprice = "最低: " + str(stockbasic[3])
-   time = str(date.today())
-   volume = "今日交易數量: " + str(stockbasic[7])
+   time = today
+   volume = "交易數量: " + str(stockbasic[7])
    
    STOCK_BASIC = FlexSendMessage(alt_text="hello", contents={
   "type": "carousel",
@@ -227,7 +247,7 @@ def STOCK_BASIC(stockbasic,number):
           },
           {
             "type": "text",
-            "text": "000",
+            "text": str(stock["ROA"]),
             "size": "md",
             "color": "#111111",
             "align": "center",
