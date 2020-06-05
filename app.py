@@ -5,7 +5,8 @@ from linebot.models import *
 from linebot.models import (
         TemplateSendMessage,CarouselTemplate,
         CarouselColumn,PostbackAction,MessageAction,URIAction,FlexSendMessage,
-        BubbleContainer,BoxComponent,ImageComponent,TextComponent,ImageSendMessage
+        BubbleContainer,BoxComponent,ImageComponent,TextComponent,ImageSendMessage,
+        QuickReply,TextSendMessage,QuickReplyButton
 )
 from linebot.exceptions import LineBotApiError
 import re
