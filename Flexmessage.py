@@ -1,26 +1,6 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue May 26 13:02:30 2020
-@author: zang
-"""
 from linebot.models import FlexSendMessage
 from datetime import date
 
-"""
-            stockanalytics = [
-                    stock["ROA"],
-                    stock["ROE"],
-                    stock["money1"],
-                    stock["money2"],
-                    stock["money3"],
-                    stock["PE"],
-                    stock["PBR"],
-                    stock["DY"],
-                    stock["goal"],
-                    stock["Appraisal"],
-                    stock["Appraisal2"]   
-                    ]
-            """
 def STOCK_BASIC(stockbasic,stock,number):
     #stockbasic處理
    color2 = "#00DB00"
@@ -247,7 +227,7 @@ def STOCK_BASIC(stockbasic,stock,number):
           },
           {
             "type": "text",
-            "text": str(stock["ROA"]),
+            "text": str(stock["ROA"]+"%"),
             "size": "md",
             "color": "#111111",
             "align": "center",
@@ -280,7 +260,7 @@ def STOCK_BASIC(stockbasic,stock,number):
           },
           {
             "type": "text",
-            "text": "000",
+            "text": str(stock["ROE"]+"%"),
             "size": "md",
             "color": "#111111",
             "align": "center",
@@ -313,7 +293,7 @@ def STOCK_BASIC(stockbasic,stock,number):
           },
           {
             "type": "text",
-            "text": "000",
+            "text": str(stock["money1"]+"%"),
             "size": "md",
             "color": "#111111",
             "align": "center",
@@ -346,7 +326,7 @@ def STOCK_BASIC(stockbasic,stock,number):
           },
           {
             "type": "text",
-            "text": "000",
+            "text": str(stock["money2"]+"%"),
             "size": "md",
             "color": "#111111",
             "align": "center",
@@ -379,7 +359,7 @@ def STOCK_BASIC(stockbasic,stock,number):
           },
           {
             "type": "text",
-            "text": "000",
+            "text": str(stock["money3"]+"%"),
             "size": "md",
             "color": "#111111",
             "align": "center",
@@ -422,7 +402,7 @@ def STOCK_BASIC(stockbasic,stock,number):
           },
           {
             "type": "text",
-            "text": "000",
+            "text": str(stock["PE"]+" 倍"),
             "size": "md",
             "color": "#111111",
             "align": "center",
@@ -455,7 +435,7 @@ def STOCK_BASIC(stockbasic,stock,number):
           },
           {
             "type": "text",
-            "text": "000",
+            "text": str(stock["PBR"]+"%"),
             "size": "md",
             "color": "#111111",
             "align": "center",
@@ -488,7 +468,7 @@ def STOCK_BASIC(stockbasic,stock,number):
           },
           {
             "type": "text",
-            "text": "000",
+            "text": str(stock["DY"]+" 倍"),
             "size": "md",
             "color": "#111111",
             "align": "center",
@@ -516,7 +496,7 @@ def STOCK_BASIC(stockbasic,stock,number):
       },
       {
         "type": "text",
-        "text": "評比結果",
+        "text": stock["Appraisal"]+stock["Appraisal2"],
         "size": "lg",
         "color": "#555555",
         "flex": 3,
