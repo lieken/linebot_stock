@@ -8,7 +8,7 @@ from linebot.models import FlexSendMessage
 def STOCK_BASIC(stockbasic,number):
     #stockbasic處理
    color2 = "#00DB00"
-   if float(stockbasic[5]) > 0:
+   if float(stockbasic[5]) >= 0:
        color2 = "#FF0000"
        diff ="+ " + str(stockbasic[5])
    elif float(stockbasic[5]) < 0 :
