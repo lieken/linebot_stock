@@ -70,7 +70,7 @@ def handle_message(event):
         else :
             line_bot_api.push_message(uid, TextSendMessage(text='您輸入的並不是上市股票號碼'))
     else :
-        if a=1:
+        if a==1:
             line_bot_api.push_message(uid, TextSendMessage(text='您輸入的並不是股票號碼'))
 
 # 處理postback
