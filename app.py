@@ -4,7 +4,7 @@ from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import *
 from linebot.models import (
         MessageAction,QuickReply,TextSendMessage,QuickReplyButton,
-        ImageSendMessage
+        ImageSendMessage,PostbackAction
         
 )
 import re
@@ -85,10 +85,10 @@ def handle_message(event):
                 quick_reply = QuickReply(
                         items = [
                                 QuickReplyButton(
-                                        action = MessageAction(label = "K線圖", text = 'K線圖 '+usespeak[4:8],data = "CandlestickChart")
+                                        action = PostbackAction(label = "K線圖",data = "CandlestickChart")
                                         ),
                                 QuickReplyButton(
-                                        action = MessageAction(label = "均線圖(短期)", text = '均線圖(短期) '+usespeak[4:8],data = "MovingAverage")
+                                        action = PostbackAction(label = "均線圖(短期)",data = "MovingAverage")
                                         )
                                 ]
         )
