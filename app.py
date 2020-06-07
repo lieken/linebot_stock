@@ -77,28 +77,11 @@ def handle_message(event):
         stock = list(bfp.best_four_point())           # 綜合判斷
         if stock[0] :
             Text_linebot = stock[1]
-            line_bot_api.push_message(uid, TextSendMessage(text='符合四大買進點: '+Text_linebot))  
+            line_bot_api.push_message(uid, TextSendMessage(text='符合四大買進點:\n'+Text_linebot))  
         else :
             Text_linebot = stock[1]
-            line_bot_api.push_message(uid, TextSendMessage(text='符合四大賣出點: '+Text_linebot))  
+            line_bot_api.push_message(uid, TextSendMessage(text='符合四大賣出點:\n'+Text_linebot))  
             
-        QuickReply_text_message = TextSendMessage(
-                quick_reply = QuickReply(
-                        items = [
-                                QuickReplyButton(
-                                        action = MessageAction(label = "四大買進點?", data = '四大買進點')
-                                        ),
-                                QuickReplyButton(
-                                        action = MessageAction(label = "四大賣出點?", data = '四大賣出點')
-                                        )
-                                ]
-        )
-    )
-        line_bot_api.push_message(uid,QuickReply_text_message)
-            
-            
-
-
        
     elif re.match('三大法人 [0-9]{4} 資料',usespeak):
        line_bot_api.push_message(uid, TextSendMessage(text='Data : 三大法人 代碼測試成功'))   
