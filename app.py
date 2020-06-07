@@ -75,11 +75,25 @@ def handle_message(event):
         stock = list(bfp.best_four_point())           # 綜合判斷
         if stock[0] :
             Text_linebot = stock[1]
-            line_bot_api.push_message(uid, TextSendMessage(text='符合四大買進點:\n'+Text_linebot))  
+            line_bot_api.push_message(uid, TextSendMessage(text='符合四大買進點:\n'+Text_linebot+'\n建議符合兩大買進點再進行購買'))  
         else :
             Text_linebot = stock[1]
-            line_bot_api.push_message(uid, TextSendMessage(text='符合四大賣出點:\n'+Text_linebot))  
+            line_bot_api.push_message(uid, TextSendMessage(text='符合四大賣出點:\n'+Text_linebot+'\n建議符合兩大賣出點再進行賣出'))  
             
+        QuickReply_text_message = TextSendMessage(
+                text = '搭配其他圖',
+                quick_reply = QuickReply(
+                        items = [
+                                QuickReplyButton(
+                                        action = MessageAction(label = "K線圖",data = "CandlestickChart")
+                                        ),
+                                QuickReplyButton(
+                                        action = MessageAction(label = "均線圖(短期)",data = "MovingAverage")
+                                        )
+                                ]
+        )
+    )
+        line_bot_api.push_message(uid,QuickReply_text_message)            
        
     elif re.match('三大法人 [0-9]{4} 資料',usespeak):
        stock = usespeak[5:9]
@@ -121,9 +135,8 @@ def handle_postback(event):
         )
     )
         line_bot_api.push_message(uid,QuickReply_text_message)
-    elif data == '四大買進點':
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=
-                '##### 四大買點 #####\n1.量大收紅\n2.量縮價不跌\n3.三日均價由下往上\n4.三日均價大於六日均價'))
+    elif data == 'CandlestickChart':
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Data : CandlestickChart 代碼測試成功'))
 
         
 if __name__ == '__main__':
