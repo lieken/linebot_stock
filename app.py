@@ -85,10 +85,10 @@ def handle_message(event):
                 quick_reply = QuickReply(
                         items = [
                                 QuickReplyButton(
-                                        action = PostbackAction(label = "K線圖",data = "CandlestickChart")
+                                        action = PostbackAction(label = "K線圖",data = "CandlestickChart="+usespeak[4:8])
                                         ),
                                 QuickReplyButton(
-                                        action = PostbackAction(label = "均線圖(短期)",data = "MovingAverage")
+                                        action = PostbackAction(label = "均線圖(短期)",data = "MovingAverage="+usespeak[4:8])
                                         )
                                 ]
         )
@@ -135,9 +135,10 @@ def handle_postback(event):
         )
     )
         line_bot_api.push_message(uid,QuickReply_text_message)
-    elif data == 'CandlestickChart':
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Data : CandlestickChart 代碼測試成功'))
-
+    elif x[0] == 'CandlestickChart':
+        stock = x[1]
+        picture = Stock_Strategy.show_user_CandlestickChart_StockImages(stock)
+        line_bot_api.push_message(uid, ImageSendMessage(original_content_url=picture, preview_image_url=picture))
         
 if __name__ == '__main__':
     app.run(debug=True)
