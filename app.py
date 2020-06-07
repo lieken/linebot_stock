@@ -1,9 +1,6 @@
 from flask import Flask, request, abort
 from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
-from flask import Flask, request, abort
-from linebot import (LineBotApi, WebhookHandler)
-from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import *
 from linebot.models import (
         MessageAction,QuickReply,TextSendMessage,QuickReplyButton,
@@ -86,7 +83,8 @@ def handle_message(event):
        
     elif re.match('三大法人 [0-9]{4} 資料',usespeak):
        stock = usespeak[5:9]
-       line_bot_api.push_message(uid, ImageSendMessage(original_content_url='https://i.imgur.com/eD0bjoNs.png', preview_image_url='https://i.imgur.com/eD0bjoNs.png'))   
+       picture = Stock_Strategy.show_user_ThreeStock_StockImages(stock)
+       line_bot_api.push_message(uid, ImageSendMessage(original_content_url=picture, preview_image_url=picture))   
         
     else :
         if a==1:
