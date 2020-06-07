@@ -85,10 +85,10 @@ def handle_message(event):
                 quick_reply = QuickReply(
                         items = [
                                 QuickReplyButton(
-                                        action = MessageAction(label = "K線圖",data = "CandlestickChart")
+                                        action = MessageAction(label = "K線圖", text = 'K線圖 '+usespeak[4:8],data = "CandlestickChart")
                                         ),
                                 QuickReplyButton(
-                                        action = MessageAction(label = "均線圖(短期)",data = "MovingAverage")
+                                        action = MessageAction(label = "均線圖(短期)", text = '均線圖(短期) '+usespeak[4:8],data = "MovingAverage")
                                         )
                                 ]
         )
