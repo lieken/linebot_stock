@@ -72,26 +72,24 @@ def handle_message(event):
             line_bot_api.push_message(uid, TextSendMessage(text='您輸入的並不是上市股票號碼'))
     
     elif re.match('技術面 [0-9]{4} 資料',usespeak):
-        #usespeak=技術面 [0-9]{4} 資料
-        stock = Stock(usespeak[4:8])
+        stock = Stock(usespeak[5:9])
         bfp = BestFourPoint(stock)
         stock = list(bfp.best_four_point())           # 綜合判斷
         if stock[0] :
             Text_linebot = stock[1]
-            line_bot_api.push_message(uid, TextSendMessage(text='符合四大買進點'+Text_linebot))  
+            line_bot_api.push_message(uid, TextSendMessage(text='符合四大買進點: '+Text_linebot))  
         else :
             Text_linebot = stock[1]
-            line_bot_api.push_message(uid, TextSendMessage(text='符合四大賣出點'+Text_linebot))  
+            line_bot_api.push_message(uid, TextSendMessage(text='符合四大賣出點: '+Text_linebot))  
             
         QuickReply_text_message = TextSendMessage(
-                text = '你想要什麼方面資訊呢',
                 quick_reply = QuickReply(
                         items = [
                                 QuickReplyButton(
-                                        action = MessageAction(label = "四大買進點?", text = '四大買進點')
+                                        action = MessageAction(label = "四大買進點?", data = '四大買進點')
                                         ),
                                 QuickReplyButton(
-                                        action = MessageAction(label = "四大賣出點?", text = '四大賣出點')
+                                        action = MessageAction(label = "四大賣出點?", data = '四大賣出點')
                                         )
                                 ]
         )
@@ -140,6 +138,9 @@ def handle_postback(event):
         )
     )
         line_bot_api.push_message(uid,QuickReply_text_message)
+    elif data == '四大買進點':
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=
+                '##### 四大買點 #####\n1.量大收紅\n2.量縮價不跌\n3.三日均價由下往上\n4.三日均價大於六日均價'))
 
         
 if __name__ == '__main__':
