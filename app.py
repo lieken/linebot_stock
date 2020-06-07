@@ -140,5 +140,10 @@ def handle_postback(event):
         picture = Stock_Strategy.show_user_CandlestickChart_StockImages(stock)
         line_bot_api.push_message(uid, ImageSendMessage(original_content_url=picture, preview_image_url=picture))
         
+    elif x[0] == 'MovingAverage':
+        stock = x[1]
+        picture = Stock_Strategy.show_user_MovingAverage_StockImages(stock)
+        line_bot_api.push_message(uid, ImageSendMessage(original_content_url=picture, preview_image_url=picture))
+        
 if __name__ == '__main__':
     app.run(debug=True)
