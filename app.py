@@ -70,8 +70,11 @@ def handle_message(event):
         else :
             line_bot_api.push_message(uid, TextSendMessage(text='您輸入的並不是上市股票號碼'))
     
-    elif re.match('三大法人 [0-9]{4} 資料分析中',usespeak):
-       line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Data : 三大法人 代碼測試成功'))   
+    elif re.match('技術面 [0-9]{4} 資料',usespeak):
+       line_bot_api.push_message(uid, TextSendMessage(text='Data : 技術面 代碼測試成功'))   
+       
+    elif re.match('三大法人 [0-9]{4} 資料',usespeak):
+       line_bot_api.push_message(uid, TextSendMessage(text='Data : 三大法人 代碼測試成功'))   
         
     else :
         if a==1:
@@ -98,10 +101,10 @@ def handle_postback(event):
                 quick_reply = QuickReply(
                         items = [
                                 QuickReplyButton(
-                                        action = MessageAction(label = "技術面分析", text = "自己分析！！")
+                                        action = MessageAction(label = "技術面分析", text = '技術面 '+x[1]+' 資料)
                                         ),
                                 QuickReplyButton(
-                                        action = MessageAction(label = "三大法人", text = '三大法人 '+x[1]+' 資料分析中')
+                                        action = MessageAction(label = "三大法人", text = '三大法人 '+x[1]+' 資料')
                                         )
                                 ]
         )
