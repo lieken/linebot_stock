@@ -58,4 +58,15 @@ def show_user_ThreeStock_StockImages(stock):
     collect = db['ThreeStock_StockImages']
     cel=list(collect.find({ "stock": int(stock)}))[0]
     return cel['url']
-
+#####K線圖圖片
+def show_user_CandlestickChart_StockImages(stock):  
+    db=constructor()
+    collect = db['CandlestickChart_StockImages']
+    cel=list(collect.find({ "stock": int(stock)}))[0]
+    return cel['url']
+#####均線圖片
+def show_user_MovingAverage_StockImages(stock):  
+    db=constructor()
+    collect = db['MovingAverage_StockImages']
+    cel=list(collect.find({ "stock": int(stock)}))[0]
+    return cel['url']
