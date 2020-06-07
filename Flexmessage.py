@@ -8,9 +8,11 @@ def STOCK_BASIC(stockbasic,stock,number):
    if float(stockbasic[5]) >= 0:
        color2 = "#FF0000"
        diff ="+ " + str(stockbasic[5])
+       image_1 = "https://i.imgur.com/9eBbPu4.png"
    elif float(stockbasic[5]) < 0 :
        color2 = "#00DB00"
        diff =" " + str(stockbasic[5])
+       image_1 = "https://i.imgur.com/WFNTXAq.png"
 
    if stockbasic[6] == "-":
        Nnprice = "-"
@@ -36,7 +38,7 @@ def STOCK_BASIC(stockbasic,stock,number):
         "size": "full",
         "aspectRatio": "20:13",
         "aspectMode": "cover",
-        "url": "https://imgur.com/G8ENDN1.jpg"
+        "url": image_1
       },
   "body": {
         "type": "box",
