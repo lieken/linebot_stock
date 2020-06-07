@@ -49,3 +49,13 @@ def show_user_stockanalytics(stock):
     cel.update(cel2)
 
     return cel
+
+
+
+#####秀出三大法人圖片
+def show_user_ThreeStock_StockImages(stock):  
+    db=constructor()
+    collect = db['ThreeStock_StockImages']
+    cel=list(collect.find({ "stock": int(stock)}))[0]
+    return cel['url']
+
