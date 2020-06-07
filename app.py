@@ -101,7 +101,7 @@ def handle_postback(event):
                 quick_reply = QuickReply(
                         items = [
                                 QuickReplyButton(
-                                        action = MessageAction(label = "技術面分析", text = '技術面 '+x[1]+' 資料)
+                                        action = MessageAction(label = "技術面分析", text = '技術面 '+x[1]+' 資料')
                                         ),
                                 QuickReplyButton(
                                         action = MessageAction(label = "三大法人", text = '三大法人 '+x[1]+' 資料')
