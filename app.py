@@ -88,7 +88,7 @@ def handle_message(event):
                                         action = PostbackAction(label = "K線圖",data = "CandlestickChart="+usespeak[4:8])
                                         ),
                                 QuickReplyButton(
-                                        action = PostbackAction(label = "均線圖(短期)",data = "MovingAverage="+usespeak[4:8])
+                                        action = PostbackAction(label = "均線圖(短)",data = "MovingAverage="+usespeak[4:8])
                                         )
                                 ]
         )
