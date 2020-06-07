@@ -12,7 +12,9 @@ from linebot.exceptions import LineBotApiError
 import re
 import Stock_Strategy
 import Flexmessage
-from twstock import BestFourPoint,Stock,twstock
+from twstock import BestFourPoint,Stock
+import twstock
+
 
 app = Flask(__name__)
 
