@@ -103,7 +103,7 @@ def handle_message(event):
 
        
     elif re.match('三大法人 [0-9]{4} 資料',usespeak):
-       line_bot_api.push_message(uid, TextSendMessage(text='Data : 三大法人 代碼測試成功'))   
+       line_bot_api.push_message(uid, TextSendMessage(text=usespeak))   
         
     else :
         if a==1:
