@@ -1,9 +1,14 @@
 from flask import Flask, request, abort
 from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
+from flask import Flask, request, abort
+from linebot import (LineBotApi, WebhookHandler)
+from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import *
 from linebot.models import (
-        MessageAction,QuickReply,TextSendMessage,QuickReplyButton
+        MessageAction,QuickReply,TextSendMessage,QuickReplyButton,
+        ImageSendMessage
+        
 )
 import re
 import Stock_Strategy
@@ -80,7 +85,8 @@ def handle_message(event):
             
        
     elif re.match('三大法人 [0-9]{4} 資料',usespeak):
-       line_bot_api.push_message(uid, TextSendMessage(text='Data : 三大法人 代碼測試成功'))   
+       stock = usespeak[5:9]
+       line_bot_api.push_message(uid, ImageSendMessage(original_content_url='https://i.imgur.com/eD0bjoNs.png', preview_image_url='https://i.imgur.com/eD0bjoNs.png'))   
         
     else :
         if a==1:
