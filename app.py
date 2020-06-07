@@ -12,9 +12,7 @@ from linebot.exceptions import LineBotApiError
 import re
 import Stock_Strategy
 import Flexmessage
-from twstock import BestFourPoint,Stock
-import twstock
-
+from twstock import BestFourPoint,Stock,twstock
 
 app = Flask(__name__)
 
@@ -73,7 +71,7 @@ def handle_message(event):
             line_bot_api.push_message(uid, TextSendMessage(text='您輸入的並不是上市股票號碼'))
     
     elif re.match('技術面 [0-9]{4} 資料',usespeak):
-        stock = Stock(usespeak)
+        stock = Stock(usespeak[5:9])
         bfp = BestFourPoint(stock)
         stock = list(bfp.best_four_point())           # 綜合判斷
         if stock[0] :
@@ -103,11 +101,12 @@ def handle_message(event):
 
        
     elif re.match('三大法人 [0-9]{4} 資料',usespeak):
-       line_bot_api.push_message(uid, TextSendMessage(text=usespeak))   
+       line_bot_api.push_message(uid, TextSendMessage(text='Data : 三大法人 代碼測試成功'))   
         
     else :
         if a==1:
             line_bot_api.push_message(uid, TextSendMessage(text='您輸入的並不是股票號碼'))
+
 
 # 處理postback
 @handler.add(PostbackEvent)
