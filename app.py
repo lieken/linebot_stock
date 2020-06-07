@@ -72,7 +72,7 @@ def handle_message(event):
             line_bot_api.push_message(uid, TextSendMessage(text='您輸入的並不是上市股票號碼'))
     
     elif re.match('技術面 [0-9]{4} 資料',usespeak):
-        stock = Stock(usespeak[4])
+        stock = Stock(usespeak[4:8])
         bfp = BestFourPoint(stock)
         stock = list(bfp.best_four_point())           # 綜合判斷
         if stock[0] :
