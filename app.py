@@ -3,12 +3,8 @@ from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import *
 from linebot.models import (
-        TemplateSendMessage,CarouselTemplate,
-        CarouselColumn,PostbackAction,MessageAction,URIAction,FlexSendMessage,
-        BubbleContainer,BoxComponent,ImageComponent,TextComponent,ImageSendMessage,
-        QuickReply,TextSendMessage,QuickReplyButton
+        MessageAction,QuickReply,TextSendMessage,QuickReplyButton
 )
-from linebot.exceptions import LineBotApiError
 import re
 import Stock_Strategy
 import Flexmessage
