@@ -32,12 +32,9 @@ def constructor():
 ##### 秀出基本股票數值的圖片 #####
 def show_user_BasicStock_fountion(stock):  
     db=constructor()
-    collect = db['BasicStock_StockImages']
-    cel=list(collect.find({ "stock": int(stock), "date": today}))
-    URL= {}
-    for i in range(0,2,1):
-        URL[i]=cel[i]['url']
-    return URL
+    collect = db['BasicStock_image']
+    cel=list(collect.find({ "stock": int(stock)}))
+    return cel
 
 #####秀出股票分析數值
 def show_user_stockanalytics(stock):  
@@ -58,6 +55,7 @@ def show_user_ThreeStock_StockImages(stock):
     collect = db['ThreeStock_StockImages']
     cel=list(collect.find({ "stock": int(stock)}))[0]
     return cel['url']
+
 #####K線圖圖片
 def show_user_CandlestickChart_StockImages(stock):  
     db=constructor()
