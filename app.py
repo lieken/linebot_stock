@@ -61,8 +61,9 @@ def handle_message(event):
                           stock["realtime"]["trade_volume"]
                           ]
             stockanalytics = Stock_Strategy.show_user_stockanalytics(usespeak)
+            stockimage = Stock_Strategy.show_user_BasicStock_fountion(usespeak)
 
-            Flex_message = Flexmessage.STOCK_BASIC(stockbasic,stockanalytics,str(usespeak))
+            Flex_message = Flexmessage.STOCK_BASIC(stockbasic,stockanalytics,str(usespeak),stockimage)
         
             line_bot_api.push_message(uid,Flex_message)
             return 0
@@ -88,7 +89,7 @@ def handle_message(event):
                                         action = PostbackAction(label = "K線圖",data = "CandlestickChart="+usespeak[4:8])
                                         ),
                                 QuickReplyButton(
-                                        action = PostbackAction(label = "均線圖(短)",data = "MovingAverage="+usespeak[4:8])
+                                        action = PostbackAction(label = "均線圖(短期)",data = "MovingAverage="+usespeak[4:8])
                                         )
                                 ]
         )
@@ -113,7 +114,7 @@ def handle_postback(event):
     # 注意!! 這裡的event.message是取不到text的
     data = event.postback.data
     x = data.split("=", 1)
-    #image = Stock_Strategy.show_user_BasicStock_fountion(x[1])
+
     global a
 
     if data == "buy":
