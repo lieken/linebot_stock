@@ -232,7 +232,7 @@ def STOCK_BASIC(stockbasic,stock,number,stockimage):
           {
             "type": "image",
             "url": stockimage["ROA_image"],
-            "aspectMode": "cover"
+            
           }
         ]
       },
@@ -265,7 +265,7 @@ def STOCK_BASIC(stockbasic,stock,number,stockimage):
           {
             "type": "image",
             "url": stockimage["ROE_image"],
-            "aspectMode": "cover"
+
           }
         ]
       },
@@ -298,7 +298,7 @@ def STOCK_BASIC(stockbasic,stock,number,stockimage):
           {
             "type": "image",
             "url": stockimage["money1_image"],
-            "aspectMode": "cover"
+
           }
         ]
       },
@@ -331,7 +331,6 @@ def STOCK_BASIC(stockbasic,stock,number,stockimage):
           {
             "type": "image",
             "url": stockimage["money2_image"],
-            "aspectMode": "cover"
           }
         ]
       },
@@ -364,7 +363,6 @@ def STOCK_BASIC(stockbasic,stock,number,stockimage):
           {
             "type": "image",
             "url": stockimage["money3_image"],
-            "aspectMode": "cover"
           }
         ]
       },
@@ -407,7 +405,6 @@ def STOCK_BASIC(stockbasic,stock,number,stockimage):
           {
             "type": "image",
             "url": stockimage["PE_image"],
-            "aspectMode": "cover"
           }
         ]
       },
@@ -440,7 +437,6 @@ def STOCK_BASIC(stockbasic,stock,number,stockimage):
           {
             "type": "image",
             "url": stockimage["PBR_image"],
-            "aspectMode": "cover"
           }
         ]
       },
