@@ -61,7 +61,7 @@ def handle_message(event):
                           stock["realtime"]["trade_volume"]
                           ]
             stockanalytics = Stock_Strategy.show_user_stockanalytics(usespeak)
-            stockimage = Stock_Strategy.show_user_BasicStock_fountion(usespeak)
+            stockimage = Stock_Strategy.show_user_BasicStock_fountion(usespeak)[0]
 
             Flex_message = Flexmessage.STOCK_BASIC(stockbasic,stockanalytics,str(usespeak),stockimage)
         
