@@ -473,13 +473,8 @@ def STOCK_BASIC(stockbasic,stock,number,stockimage):
           {
             "type": "image",
             "url": stockimage["DY_image"],
-            "aspectMode": "cover"
           }
         ]
-      },
-      {
-        "type": "separator",
-        "margin": "xl"
       }
     ]
   }
