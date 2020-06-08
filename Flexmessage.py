@@ -1,7 +1,7 @@
 from linebot.models import FlexSendMessage
 from datetime import date
 
-def STOCK_BASIC(stockbasic,stock,number):
+def STOCK_BASIC(stockbasic,stock,number,stockimage):
     #stockbasic處理
    color2 = "#00DB00"
    today = str(date.today())
@@ -157,14 +157,6 @@ def STOCK_BASIC(stockbasic,stock,number):
         "contents": [
           {
             "type": "button",
-            "action": {
-              "type": "postback",
-              "label": "最近資訊",
-              "data": "LatestNews="+str(number)
-            }
-          },
-          {
-            "type": "button",
             "style": "primary",
             "action": {
               "type": "postback",
@@ -239,7 +231,7 @@ def STOCK_BASIC(stockbasic,stock,number):
           },
           {
             "type": "image",
-            "url": "https://imgur.com/fV8ISrN.png",
+            "url": stockimage["ROA_image"],
             "aspectMode": "cover"
           }
         ]
@@ -272,7 +264,7 @@ def STOCK_BASIC(stockbasic,stock,number):
           },
           {
             "type": "image",
-            "url": "https://imgur.com/pOcsIoX.png",
+            "url": stockimage["ROE_image"],
             "aspectMode": "cover"
           }
         ]
@@ -305,7 +297,7 @@ def STOCK_BASIC(stockbasic,stock,number):
           },
           {
             "type": "image",
-            "url": "https://imgur.com/pOcsIoX.png",
+            "url": stockimage["money1_image"],
             "aspectMode": "cover"
           }
         ]
@@ -338,7 +330,7 @@ def STOCK_BASIC(stockbasic,stock,number):
           },
           {
             "type": "image",
-            "url": "https://imgur.com/pOcsIoX.png",
+            "url": stockimage["money2_image"],
             "aspectMode": "cover"
           }
         ]
@@ -371,7 +363,7 @@ def STOCK_BASIC(stockbasic,stock,number):
           },
           {
             "type": "image",
-            "url": "https://imgur.com/pOcsIoX.png",
+            "url": stockimage["money3_image"],
             "aspectMode": "cover"
           }
         ]
@@ -414,7 +406,7 @@ def STOCK_BASIC(stockbasic,stock,number):
           },
           {
             "type": "image",
-            "url": "https://imgur.com/pOcsIoX.png",
+            "url": stockimage["PE_image"],
             "aspectMode": "cover"
           }
         ]
@@ -447,7 +439,7 @@ def STOCK_BASIC(stockbasic,stock,number):
           },
           {
             "type": "image",
-            "url": "https://imgur.com/pOcsIoX.png",
+            "url": stockimage["PBR_image"],
             "aspectMode": "cover"
           }
         ]
@@ -480,7 +472,7 @@ def STOCK_BASIC(stockbasic,stock,number):
           },
           {
             "type": "image",
-            "url": "https://imgur.com/pOcsIoX.png",
+            "url": stockimage["DY_image"],
             "aspectMode": "cover"
           }
         ]
@@ -488,31 +480,10 @@ def STOCK_BASIC(stockbasic,stock,number):
       {
         "type": "separator",
         "margin": "xl"
-      },
-      {
-        "type": "text",
-        "text": "評比",
-        "size": "lg",
-        "color": "#aaaaaa",
-        "weight": "bold"
-      },
-      {
-        "type": "text",
-        "text": stock["Appraisal"]+stock["Appraisal2"],
-        "size": "md",
-        "color": "#555555",
-        "flex": 3,
-        "weight": "bold",
-        "decoration": "underline",
-        "position": "relative"
       }
     ]
   }
 }
-            
-            
-            
-            
   ]
 }
 )
