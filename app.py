@@ -18,7 +18,7 @@ app = Flask(__name__)
 a = 1
 line_bot_api = LineBotApi('/u+KR9NmRg9UVRk8NWvx578eKypyJUOaXrSltxJaKtY7hHTIM/UY5Nj9jm1vNNbsODDCxVM6HPftyh9oyTL/oFBuBtBI5cS3j/lWsfaWBu1Ea7OclWBxJnWWk10XyMogmtsyYvX60c9RFwSyRlLCwwdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('3a3ec40cb756d1640f70aa711372e431')
-line_bot_api.push_message('U1d4e838208d0f278714d687538a07600', TextSendMessage(text='請輸入股票代號'))
+#line_bot_api.push_message('U1d4e838208d0f278714d687538a07600', TextSendMessage(text='請輸入股票代號'))
 
 
 
