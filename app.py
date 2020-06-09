@@ -48,7 +48,10 @@ def handle_message(event):
     usespeak=str(event.message.text) #使用者講的話
     #usespeak = "2002"
     if re.match('[0-9]{4}',usespeak):
-        if usespeak in twstock.twse :
+        if re.match('00[0-9]{2}',usespeak):
+            line_bot_api.push_message(uid, TextSendMessage(text='您輸入的並不是上市公司股票號碼'))
+                
+        elif usespeak in twstock.twse :
             #資料處理
             stock = twstock.realtime.get(usespeak)
             stockbasic = [stock["info"]["code"] +" " + stock["info"]["name"],
