@@ -17,7 +17,7 @@ def Price_Stock(stock):
     for i in range(0,10,1):
         Basic[i] = soup.find_all('td', {'bgcolor':"#FFFfff"})[i].text
     x = Basic[4].split("\n", 1)
-    Diff = x[0].replace('▽', '-').replace('△', '')
+    Diff = x[0].replace('▽', '-').replace('△', '').replace('▲', '').replace('▼', '')
     return Diff
 
 
