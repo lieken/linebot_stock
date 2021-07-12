@@ -11,4 +11,4 @@
 1. 自動繪製圖形並上傳至 imagur，存入相關連結資訊供給 mongodb
 
 
-![This is a alt text.](sample.png "This is a sample image.")
+![This is a alt text.](sample.jpg "This is a sample image.")
