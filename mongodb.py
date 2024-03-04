@@ -13,7 +13,7 @@ Authdb='linebot_stock'
 
 ##### 資料庫連接 #####
 def constructor():
-    client = MongoClient('mongodb://kikp2929:kik759136@stockfree-shard-00-00-vskh2.azure.mongodb.net:27017,stockfree-shard-00-01-vskh2.azure.mongodb.net:27017,stockfree-shard-00-02-vskh2.azure.mongodb.net:27017/test?ssl=true&replicaSet=stockfree-shard-0&authSource=admin&retryWrites=true&w=majority')
+    client = MongoClient('放入你的代碼')
     db = client[Authdb]
     return db
    
